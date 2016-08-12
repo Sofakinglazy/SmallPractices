@@ -1,9 +1,11 @@
 package ecszoo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ZooKeeper {
 
+	protected List<Treat> treatList;
 	protected Zoo zoo;
 	protected Enclosure enclosure;
 	protected int movingFoodAmount;
@@ -16,6 +18,9 @@ public class ZooKeeper {
 		movingFoodAmount = 20;
 		movingWasteAmount = 20;
 		monthlyTreatTimes = 2;
+		treatList = new ArrayList<>();
+		treatList.add(Treat.stroked);
+		treatList.add(Treat.hug);
 	}
 
 	public void aMonthPasses() {
@@ -56,8 +61,10 @@ public class ZooKeeper {
 		int count = 0;
 		while (count < monthlyTreatTimes) {
 			Animal unhealthy = getLeastHealthyAnimal();
-			unhealthy.treat();
-			count++;
+			for (Treat action : treatList){
+				unhealthy.treat();
+				count++;
+			}
 		}
 	}
 

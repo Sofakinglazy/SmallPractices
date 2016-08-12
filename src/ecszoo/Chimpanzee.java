@@ -10,4 +10,9 @@ public class Chimpanzee extends Ape {
 		decreasePoint = 2;
 		treatPoint = 4;
 	}
+
+	@Override
+	public boolean canTreat(Treat action) {
+		return action.equals(Treat.play_chase);
+	}
 }

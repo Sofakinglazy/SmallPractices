@@ -11,4 +11,9 @@ public class Bear extends Animal {
 		treatPoint = 3;
 	}
 
+	@Override
+	public boolean canTreat(Treat action) {
+		return action.equals(Treat.hug);
+	}
+
 }

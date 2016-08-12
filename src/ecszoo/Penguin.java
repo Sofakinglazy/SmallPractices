@@ -11,4 +11,9 @@ public class Penguin extends Animal {
 		treatPoint = 2;
 	}
 
+	@Override
+	public boolean canTreat(Treat action) {
+		return action.equals(Treat.watch_a_film);
+	}
+
 }

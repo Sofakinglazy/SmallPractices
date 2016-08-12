@@ -11,4 +11,9 @@ public class Giraffe extends Animal {
 		treatPoint = 4;
 	}
 
+	@Override
+	public boolean canTreat(Treat action) {
+		return action.equals(Treat.neck_Massage);
+	}
+
 }

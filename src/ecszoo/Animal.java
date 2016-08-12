@@ -2,7 +2,7 @@ package ecszoo;
 
 import java.util.*;
 
-public class Animal {
+public abstract class Animal {
 
 	protected int age; // Months
 	protected char gender; // 'F', 'M'
@@ -64,7 +64,7 @@ public class Animal {
 				health -= decreasePoint;
 		}
 	}
-
+	
 	public void treat() {
 		if (alive) {
 			if (health + treatPoint > 10)
@@ -111,4 +111,6 @@ public class Animal {
 		String type = getClass().getSimpleName();
 		return String.format("<%s, %s, %s, %s>", type, age, gender, health);
 	}
+	
+	public abstract boolean canTreat(Treat action);
 }

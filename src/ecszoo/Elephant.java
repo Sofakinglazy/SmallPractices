@@ -11,4 +11,9 @@ public class Elephant extends Animal {
 		treatPoint = 5;
 	}
 
+	@Override
+	public boolean canTreat(Treat action) {
+		return action.equals(Treat.bath);
+	}
+
 }

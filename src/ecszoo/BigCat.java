@@ -8,4 +8,11 @@ public class BigCat extends Animal {
 		eats.add(Food.celery);
 		eats.add(Food.steak);
 	}
+
+	@Override
+	public boolean canTreat(Treat action) {
+		return action.equals(Treat.stroked);
+	}
+	
+	
 }
