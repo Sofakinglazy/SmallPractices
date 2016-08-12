@@ -2,7 +2,7 @@ package ecszoo;
 
 import java.util.*;
 
-public abstract class Animal {
+public class Animal {
 
 	protected int age; // Months
 	protected char gender; // 'F', 'M'
@@ -31,6 +31,10 @@ public abstract class Animal {
 
 	public boolean isAlive(){
 		return alive;
+	}
+	
+	public int getHealth(){
+		return health;
 	}
 
 	public boolean canEat(Food food) {
@@ -101,5 +105,10 @@ public abstract class Animal {
 
 	public void setEnclosure(Enclosure enclosure){
 		this.enclosure = enclosure;
+	}
+	
+	public String toString(){
+		String type = getClass().getSimpleName();
+		return String.format("<%s, %s, %s, %s>", type, age, gender, health);
 	}
 }

@@ -1,6 +1,6 @@
 package ecszoo;
 
-public abstract class BigCat extends Animal {
+public class BigCat extends Animal {
 	
 	public BigCat(int age, char gender) {
 		super(age, gender);

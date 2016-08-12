@@ -1,6 +1,7 @@
 package ecszoo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Enclosure {
 
@@ -27,9 +28,9 @@ public class Enclosure {
 		animals.remove(animal);
 	}
 	
-	public void removeWaste(int amount) throws NegativeValueException{
+	public void removeWaste(int amount){
 		if (waste < amount)
-			throw new NegativeValueException("No enough waste to remove..");
+			waste = 0;
 		waste -= amount;
 	}
 	
@@ -49,9 +50,16 @@ public class Enclosure {
 		return animals.size();
 	}
 	
+	public List<Animal> getAnimals() {
+		return animals;
+	}
+	
 	public void aMonthPasses(){
-		for (Animal a : animals){
-			a.aMonthPasses();
+		for (Animal animal : animals){
+			animal.aMonthPasses();
+			if (!animal.isAlive()){
+				removeAnimal(animal);
+			}
 		}
 	}
 }
