@@ -9,18 +9,17 @@ public class Enclosure {
 	private ArrayList<Animal> animals;
 	private int waste;
 	private Foodstore foodstore;
-	private boolean isFull;
 
 	public Enclosure() {
 		animals = new ArrayList<>();
 		foodstore = new Foodstore();
 		waste = 0;
-		isFull = false;
 	}
 
-	public void addAnimal(Animal animal) {
+	public void addAnimal(Animal animal) throws NegativeValueException {
 		if (animals.size() == CAPACITY)
-			throw new IllegalArgumentException("Excess the capacity of enclosure.");
+			throw new NegativeValueException("Excess the capacity of enclosure.");
+		animal.setEnclosure(this);
 		animals.add(animal);
 	}
 	
@@ -28,9 +27,9 @@ public class Enclosure {
 		animals.remove(animal);
 	}
 	
-	public void removeWaste(int amount){
+	public void removeWaste(int amount) throws NegativeValueException{
 		if (waste < amount)
-			throw new IllegalArgumentException("No enough waste to remove..");
+			throw new NegativeValueException("No enough waste to remove..");
 		waste -= amount;
 	}
 	

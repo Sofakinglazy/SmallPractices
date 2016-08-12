@@ -21,11 +21,29 @@ public class Foodstore {
 		storage.put(food, original + amount);
 	}
 	
-	public void takeFood(Food food, int amount){
+	public void addFood(Food food){
+		addFood(food, 1);
+	}
+	
+	public boolean takeFood(Food food, int amount){
 		Integer original = storage.get(food);
-		if (original >= amount)
+		if (original >= amount){
 			storage.put(food, original - amount);
+			return true;
+		}
 		else 
-			throw new IllegalArgumentException("No much food in the storage.");
+			return false;
+	}
+	
+	public boolean takeFood(Food food){
+		return takeFood(food, 1);
+	}
+	
+	public int getSpecificFood(Food food){
+		return storage.get(food);
+	}
+	
+	public boolean isAvailable(Food food){
+		return getSpecificFood(food) > 0;
 	}
 }
