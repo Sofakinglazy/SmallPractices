@@ -61,10 +61,8 @@ public class ZooKeeper {
 		int count = 0;
 		while (count < monthlyTreatTimes) {
 			Animal unhealthy = getLeastHealthyAnimal();
-			for (Treat action : treatList){
-				unhealthy.treat();
-				count++;
-			}
+			unhealthy.treat();
+			count++;
 		}
 	}
 
@@ -73,9 +71,15 @@ public class ZooKeeper {
 		int min = Integer.MAX_VALUE;
 		Animal unhealthy = null;
 		for (Animal animal : animals) {
+			// select the lower health animal
 			if (min > animal.getHealth()) {
-				min = animal.getHealth();
-				unhealthy = animal;
+				// pass this animal if its cannot be treat by keeper
+				for (Treat action : treatList){
+					if (animal.canTreat(action)){
+						min = animal.getHealth();
+						unhealthy = animal;
+					}
+				}
 			}
 		}
 		return unhealthy;

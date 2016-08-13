@@ -25,4 +25,5 @@ public class NegativeValueException extends Exception {
 		super(cause);
 	}
 
+	
 }
