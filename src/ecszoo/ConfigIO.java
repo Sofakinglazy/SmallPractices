@@ -8,12 +8,11 @@ import java.util.Properties;
 
 public class ConfigIO {
 
-	private static String result = "";
 	private static InputStream inputStream;
 	private static Properties prop;
 	private static String propFilename = "resources/config/config.properties";
 	
-	public static String getPropValues() throws IOException{
+	public static void importPropValues() throws IOException{
 		prop = new Properties();
 		
 		inputStream = new FileInputStream(propFilename);
@@ -31,7 +30,6 @@ public class ConfigIO {
 		} finally {
 			inputStream.close();
 		}
-		return result;
 	}
 	
 	private static void configFood() {
@@ -50,7 +48,7 @@ public class ConfigIO {
 				System.out.printf("Warning: No key for food %s, default values are taken.\n", name);
 			}
 			// test 
-			System.out.printf("%s: %s\n", name, food.toString());
+//			System.out.printf("%s: %s\n", name, food.toString());
 		}
 	}
 
@@ -60,6 +58,32 @@ public class ConfigIO {
 	
 	private static boolean verify(String[] props, int length){
 		return props.length == length;
+	}
+	
+	public static String[] getPropValuesByKey(String key) throws IOException, KeyNotFoundException{
+		String[] result = null;
+		prop = new Properties();
+		
+		inputStream = new FileInputStream(propFilename);
+		try{
+			if (prop != null){
+			prop.load(inputStream);
+			} else {
+				throw new FileNotFoundException(String.format("Property file '%s' cannot be found.\n", propFilename));
+			}
+			
+			String props = prop.getProperty(key);
+			if (props != null){
+				result = splitProps(props);
+			} else {
+				throw new KeyNotFoundException("Keyword '" + key + "' cannot be found in the file.");
+			}
+		} catch (FileNotFoundException e){
+			System.err.println("FileNotFoundException: " + e);
+		} finally {
+			inputStream.close();
+		}
+		return result;
 	}
 	
 }
